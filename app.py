@@ -7,7 +7,11 @@ def cmd_start(message: Message):
     user_name = message.from_user.username
     text = (
         f"Привет {user_name}! \n"
-        f"Я - бот и меня зовут Майк Вазовский."
+        f"Я - бот и меня зовут Майк Вазовский. \n"
+        f"\n"
+        f"\n"
+        f"/help - показать cписок команд"
+
     )
     bot.send_message(message.chat.id, text)
 
