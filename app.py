@@ -49,7 +49,21 @@ def cmd_clean(message: Message):
         except Exception:
 
             pass
-   
+
+@bot.message_handler(commands=['help'])
+def cmd_help(message: Message):
+    chat_id = message.chat.id
+    text = (
+        f"Cписок команд: \n"
+
+    )
+    bot.reply_to(message, text)
+
+
+
+
+
+
 
 
 
