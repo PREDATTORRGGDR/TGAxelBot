@@ -36,3 +36,4 @@ env/
 .vscode/
 *.swp
 *.swo
+.json
