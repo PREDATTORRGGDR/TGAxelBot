@@ -266,8 +266,21 @@ def cmd_clean(message: Message):
 
 @bot.message_handler(commands=["help"])
 def cmd_help(message: Message):
-    text = "Список команд:\n/start\n/scare\n/curse\n/ghost\n/info\n/help\n/clean"
-    track(message.chat.id, bot.reply_to(message, text))
+    text = "📋 Вот что я умею, смертный..."
+    kb = InlineKeyboardMarkup()
+    kb.row(
+        InlineKeyboardButton(text="Напугай 👻", callback_data="scare"),
+        InlineKeyboardButton(text="Прокляни 😈", callback_data="curse"),
+    )
+    kb.row(
+        InlineKeyboardButton(text="Паранормальное 👁️", callback_data="ghost"),
+        InlineKeyboardButton(text="Инфо 🧾", callback_data="info"),
+    )
+    kb.row(
+        InlineKeyboardButton(text="🧹 Очистить чат", callback_data="clean"),
+        InlineKeyboardButton(text="🏠 В начало", callback_data="start"),
+    )
+    track(message.chat.id, bot.reply_to(message, text, reply_markup=kb))
 
 
 @bot.message_handler(commands=["info"])
@@ -283,6 +296,9 @@ def on_callback(call: CallbackQuery):
         "curse": cmd_curse,
         "ghost": cmd_ghost,
         "help": cmd_help,
+        "info": cmd_info,
+        "clean": cmd_clean,
+        "start": cmd_start,
     }
     if call.data in handlers:
         handlers[call.data](call.message)
